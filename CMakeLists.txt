@@ -1,0 +1,45 @@
+cmake_minimum_required(VERSION 3.16)
+project(Grains)
+
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -fPIC")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3 -fPIC")
+SET(CMAKE_CC_FLAGS "${CMAKE_CC_FLAGS} -O3 -fPIC")
+#SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+#SET(CMAKE_CC_FLAGS "${CMAKE_CC_FLAGS} -fPIC")
+
+SET(CMAKE_VERBOSE_MAKEFILE OFF) 
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Modules")
+message("cmake module path: " ${CMAKE_MODULE_PATH})
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+
+find_package(OpenCV REQUIRED)
+set(CUDA_SEPARABLE_COMPILATION ON)
+find_package(CUDA REQUIRED)
+
+#add_definitions(${Qt5Widgets_DEFINITIONS})
+list(APPEND CUDA_INCLUDE_DIRS  ${OpenCV_INCLUDE_DIRS})
+include_directories(${CUDA_INCLUDE_DIRS})
+include_directories(${OPENCV_INCLUDE_DIRS})
+include_directories(${OpenCV2_INCLUDE_DIRS})
+include_directories("d:/opencv/build/include")
+MESSAGE(STATUS "opencv include dir:  ${OPENCV_INCLUDE_DIRS} ${OPENCV2_INCLUDE_DIRS}")
+MESSAGE(STATUS "opencv lib dir:  ${OPENCV_core_LIBRARY}")
+SET(ALL_CUDA_LIBS ${CUDA_LIBRARIES} ${CUDA_cusparse_LIBRARY} ${CUDA_cublas_LIBRARY})
+message(STATUS "CUDA_LIBRARIES: ${CUDA_INCLUDE_DIRS} ${ALL_CUDA_LIBS}")
+set(CUDA_PROPAGATE_HOST_FLAGS ON)
+set(CUDA_NVCC_FLAGS --expt-extended-lambda)
+
+include(${CMAKE_CURRENT_SOURCE_DIR}/src/CMakeLists.txt)
+
+CUDA_ADD_EXECUTABLE(Grains ${CUDA_SOURCES})
+
+TARGET_LINK_LIBRARIES(Grains ${OpenCV_LIBS} ${OpenCV2_LIBRARIES} ${OPENCV_LIBRARIES} Qt6::Widgets)

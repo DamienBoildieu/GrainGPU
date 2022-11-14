@@ -1,0 +1,40 @@
+include_directories(src)
+
+IF(CUDA_FOUND)
+	SET(CUDA_SOURCES
+		#CUDA Files
+		src/utils/cuda.cu
+		src/utils/functors.cu
+		src/utils/parser/parser.cpp
+		src/utils/parser/helpoption.cpp
+	src/utils/filters.cu
+        src/utils/stats.cu
+	src/utils/normalDistribution.cu
+		src/utils/parser/graining/imageoption.cpp
+		src/utils/parser/graining/randomoption.cpp
+		src/utils/parser/graining/iteoption.cpp
+		src/utils/parser/graining/inittimeoption.cpp
+		src/utils/parser/graining/updatetimeoption.cpp
+		src/utils/parser/graining/convotimeoption.cpp
+		src/utils/parser/graining/outputsizeoption.cpp
+		src/SPH/sph.cu
+    src/SPH/sphParameters.cu
+		src/SPH/kernelLauncher.cu
+		src/SPH/kernels.cu
+		src/Film/layer.cu
+		src/Film/film.cu
+		src/Film/kernelLauncher.cu
+		src/Film/kernels.cu
+		src/IHM/main.cu
+		src/IHM/graining.cpp
+		src/IHM/grainingwindow.ui
+		src/IHM/grainingwindow.cpp
+		src/IHM/grainingController.cu
+		src/IHM/runThread.cpp
+		src/IHM/parameterswindow.ui
+		src/IHM/parameterswindow.cpp
+		src/IHM/operationswindow.ui
+		src/IHM/operationswindow.cpp
+		src/IHM/grainingscene.cpp
+	)
+endif()
