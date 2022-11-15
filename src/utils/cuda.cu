@@ -31,7 +31,7 @@ void KernelLauncher::initialize()
 HOST DEVICE
 float radius(float mass, float rho0)
 {
-    return cbrt(60.f*mass/(4.f*M_PI*rho0));
+    return 0.;//cbrt(60.f*mass/(4.f*pi*rho0));
 }
 //*****************************************************************************
 int32 chooseBestDevice() {

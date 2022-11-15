@@ -133,7 +133,7 @@ void computeRhoP(ConstPtr<Vec2f> pos, ConstPtr<float> mass, ConstPtr<float> radi
 							//if (world==5)
 							//	printf("mass : %f -- h2 : %f -- d2 : %f -- world : %u\n", massTid, h*h, d2, world);
                             rhoTmp += massTid * 315. *
-                                pow(h*h - d2, 3.)/(64.*M_PI*pow(h,9.));
+                                pow(h*h - d2, 3.)/(64.*pi*pow(h,9.));
 						}
 					}
 				}
@@ -198,10 +198,10 @@ void computeForces(ConstPtr<Vec2f> pos, ConstPtr<float> mass, ConstPtr<float> ra
                             if (d>h)
 								continue;
 							Vec2d WP{p1p2.x(), p1p2.y()};
-                            fPP += (-45.*pow(h-d,2)/(M_PI*pow(h,6)))
+                            fPP += (-45.*pow(h-d,2)/(pi*pow(h,6)))
 								*0.5*pV2*(pTid+p[partId])*WP;
 						
-                            double Wv = (45.*(h-d)/(M_PI*pow(h,6)))*pV2;
+                            double Wv = (45.*(h-d)/(pi*pow(h,6)))*pV2;
                             fVV.x() += (vel[partId].x()-velTid.x()) * Wv;
                             fVV.y() += (vel[partId].y()-velTid.y()) * Wv;
 						}

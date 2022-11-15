@@ -9,7 +9,7 @@
 #include <QMessageBox>
 #include <QPair>
 #include <QTextStream>
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QMessageBox>
 #include "parameterswindow.h"
 
@@ -22,21 +22,21 @@ GrainingWindow::GrainingWindow(QWidget* parent) :
 {
     //Set up windows
     mUi->setupUi(this);
-    move(QApplication::desktop()->screen()->rect().center() - rect().center());
+    move(QApplication::primaryScreen()->geometry().center() - rect().center());
     mUi->graphicsView->setScene(mScene);
     int32 dt = size().width()/2;
 
     mParameters->setWindowFlag(Qt::Window);
-    QPoint parametersPos{QApplication::desktop()->screen()->rect().center().x()-mParameters->rect().right()-dt,
-        QApplication::desktop()->screen()->rect().center().y()-mParameters->rect().center().y()};
+    QPoint parametersPos{QApplication::primaryScreen()->geometry().center().x()-mParameters->rect().right()-dt,
+        QApplication::primaryScreen()->geometry().center().y()-mParameters->rect().center().y()};
     mParameters->move(parametersPos);
     mParameters->show();
     mParameters->raise();
     mParameters->activateWindow();
 
     mOperations->setWindowFlag(Qt::Window);
-    QPoint operationsPos{QApplication::desktop()->screen()->rect().center().x()-mOperations->rect().left()+dt,
-        QApplication::desktop()->screen()->rect().center().y()-mOperations->rect().center().y()};
+    QPoint operationsPos{QApplication::primaryScreen()->geometry().center().x()-mOperations->rect().left()+dt,
+        QApplication::primaryScreen()->geometry().center().y()-mOperations->rect().center().y()};
     mOperations->move(operationsPos);
     mOperations->show();
     mOperations->raise();
@@ -90,14 +90,14 @@ void GrainingWindow::computeImage()
         opes->displayCheckBox->isChecked());
     displayPixmap();
     QTextStream out(stdout);
-    out << "Image displayed" << endl;
+    out << "Image displayed" << Qt::endl;
 }
 //*****************************************************************************
 bool GrainingWindow::init()
 {
     Ui::OperationsWindow* opes = mOperations->ui();
     QTextStream out(stdout);
-    out << "Create simulation" << endl;
+    out << "Create simulation" << Qt::endl;
     if (!mController.init(opes->rgbRadio->isChecked(), mSimuParams, opes->resultsCheckBox->isChecked(),
         opes->forcesCheckBox->isChecked()))
     {
@@ -115,7 +115,7 @@ void GrainingWindow::update()
     Ui::ParametersWindow* params = mParameters->ui();
     QTextStream out(stdout);
     out << "Update " << params->iteSpinBox->value() << " times with dt = "
-        << params->dtSpinBox->value() << "s" << endl;
+        << params->dtSpinBox->value() << "s" << Qt::endl;
     mController.update(params->iteSpinBox->value(), params->dtSpinBox->value());
 }
 //*****************************************************************************

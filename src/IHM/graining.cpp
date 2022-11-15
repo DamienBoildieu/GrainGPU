@@ -141,7 +141,7 @@ std::vector<float> Graining::loadGrayImage()
     std::cerr << "loadImage" << std::endl;
     auto image_color = cv::imread(input);
     cv::Mat image;
-    cvtColor(image_color, image, CV_BGR2GRAY);
+    cvtColor(image_color, image, cv::COLOR_BGR2GRAY);
     width = image.cols;
     height = image.rows;
     int32 nbElems = width*height;

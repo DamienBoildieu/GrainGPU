@@ -7,7 +7,7 @@ namespace sph {
 HOST DEVICE
 float radius(float mass, float rho0)
 {
-    return cbrt(60.f*mass/(4.f*M_PI*rho0));
+    return cbrt(60.f*mass/(4.f*pi*rho0));
 }
 //*****************************************************************************
 SPHParameters::SPHParameters(float avgMass, float massStdev, float minMass, float maxMass,
