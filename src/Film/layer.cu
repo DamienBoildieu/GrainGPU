@@ -242,11 +242,12 @@ sph::SPH& Layer::SPH()
 //*****************************************************************************
 void Layer::calculateGradientIntensity()
 {
-    cv::Mat input{(int32)mHeight, (int32)mWidth, CV_32F};
+    cv::Mat input{(int32)mHeight, (int32)mWidth, CV_32F, 0.f};
     for(int32 i = 0; i < input.rows; i++) {
         float* row = input.ptr<float>(i);
-        for(int32 j = 0; j < input.cols; j++)
+        for(int32 j = 0; j < input.cols; j++) {
             row[j] = mHostPixels.intensities[i*mWidth+j];
+        }
     }
     cv::GaussianBlur(input, input, cv::Size(3,3), 0, 0, cv::BORDER_DEFAULT);
     
