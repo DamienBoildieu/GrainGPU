@@ -48,7 +48,7 @@ private:
 namespace film {
 //*****************************************************************************
 template <template<typename, typename...> typename Array, typename... Args>
-Film::Film(uint32 width, uint height, uint32 nbLayers, const Array<float>& intensity,
+Film::Film(uint32 width, uint32 height, uint32 nbLayers, const Array<float>& intensity,
     const sph::SPHParameters& params, bool writeResults, bool writeForceStats)
 : mLayers()
 {

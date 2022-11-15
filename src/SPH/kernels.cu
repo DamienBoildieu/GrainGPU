@@ -15,17 +15,17 @@ DEVICE uint32 stop(ConstPtr<uint32> cellsStop, int32 cell)
 }
 //*****************************************************************************
 GLOBAL
-void getNeighbors(Ptr<uint> nbNeighbor, ConstPtr<Vec2f> pos, ConstPtr<uint> cellsStop,
-    ConstPtr<uint> worldKey, Vec2<uint> dim, ConstPtr<Vec2f> lowerLimits, uint partNumber,
-    uint worldBegin, float maxRadius)
+void getNeighbors(Ptr<uint32> nbNeighbor, ConstPtr<Vec2f> pos, ConstPtr<uint32> cellsStop,
+    ConstPtr<uint32> worldKey, Vec2<uint32> dim, ConstPtr<Vec2f> lowerLimits, uint32 partNumber,
+    uint32 worldBegin, float maxRadius)
 {
-	const uint firstId = blockIdx.x * blockDim.x + threadIdx.x;
-	const uint gridSize = blockDim.x * gridDim.x;
+	const uint32 firstId = blockIdx.x * blockDim.x + threadIdx.x;
+	const uint32 gridSize = blockDim.x * gridDim.x;
     const float dx = maxRadius;
     const float dy = maxRadius;
 	const int nbcx = 2; //from cpu version
 	const int nbcy = 2;
-	for (uint tid=firstId; tid<partNumber; tid+=gridSize) {
+	for (uint32 tid=firstId; tid<partNumber; tid+=gridSize) {
 		const int world = worldKey[tid]-worldBegin;
 		const int gridBegin = world*dim.x()*dim.y();
 		const Vec2f lower{lowerLimits[world]};
@@ -44,7 +44,7 @@ void getNeighbors(Ptr<uint> nbNeighbor, ConstPtr<Vec2f> pos, ConstPtr<uint> cell
 					if(cell<((world+1)*dim.x()*dim.y())){
 						nbCell++;
 						//printf("Cell %d : start : %d - stop : %d \n", cell, start(cellsStop, cell), stop(cellsStop, cell));
-						for (uint partId=start(cellsStop, cell); partId<stop(cellsStop, cell); partId++) {
+						for (uint32 partId=start(cellsStop, cell); partId<stop(cellsStop, cell); partId++) {
 							/*if (partId==tid)
 								continue;*/
 							//printf("tid : %d -- partId : %d \n", tid, partId);
@@ -287,7 +287,7 @@ void updateMass(utils::Ptr<float> mass, utils::Ptr<float> radius, float avg,
 {
 	const uint32 firstId = blockIdx.x * blockDim.x + threadIdx.x;
     const uint32 gridSize = blockDim.x * gridDim.x;
-    for (uint tid=firstId; tid<partNumber; tid+=gridSize) {
+    for (uint32 tid=firstId; tid<partNumber; tid+=gridSize) {
         const float oldMass = mass[tid];
         const float dMass = oldMass - avg;
         const float newMass = oldMass + dMass*dStdev - dMass + dAvg;

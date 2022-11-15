@@ -6,7 +6,7 @@ namespace utils {
 DEVICE
 double normal01Pdf(double x)
 {
-    return 1./sqrt(pi2)*exp(-.5*(x*x));
+    return 1./sqrt(M_PI2)*exp(-.5*(x*x));
 }
 //*****************************************************************************
 DEVICE
@@ -25,7 +25,7 @@ DEVICE
 double normalPdf(double x, double mu, double sigma)
 {
     x = (x-mu)/sigma;
-    return 1./(sigma*sqrt(pi2))*exp(-.5*(x*x));
+    return 1./(sigma*sqrt(M_PI2))*exp(-.5*(x*x));
 }
 //*****************************************************************************
 DEVICE

@@ -7,5 +7,5 @@ using uint32 = std::uint32_t;
 using uint64 = std::uint64_t;
 using real = float;
 
-constexpr double pi = 3.14159265358979323846;
-constexpr double pi2 = pi*2.;
+constexpr double M_PI = 3.14159265358979323846;
+constexpr double M_PI2 = M_PI *2.;
