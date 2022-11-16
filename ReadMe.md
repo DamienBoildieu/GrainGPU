@@ -18,4 +18,4 @@ cd build
 make
 ./Grains
 ```
-![GUI](/docs/img/gui.png?raw=true"GUI screenshot")
+![GUI](docs/img/gui.png?raw=true "GUI screenshot")
