@@ -12,11 +12,11 @@ constexpr float C = 1./3.;
 template <typename Impl>
 struct Filter {
     HOST DEVICE Filter(const Vec2f& radius);
-    HOST DEVICE Filter(const Filter& other) = default;
-    HOST DEVICE Filter(Filter&& other) = default;
-    HOST DEVICE ~Filter() = default;
-    HOST DEVICE Filter& operator=(const Filter& right) = default;
-    HOST DEVICE Filter& operator=(Filter&& right) = default;
+    Filter(const Filter& other) = default;
+    Filter(Filter&& other) = default;
+    ~Filter() = default;
+    Filter& operator=(const Filter& right) = default;
+    Filter& operator=(Filter&& right) = default;
 
     HOST DEVICE float filter(const Vec2f& point) const;
     HOST DEVICE float integrate(const Vec2f& max, const Vec2f& min) const;
@@ -30,11 +30,11 @@ private:
 struct BoxFilter : public Filter<BoxFilter>
 {
     HOST DEVICE BoxFilter(const Vec2f& radius);
-    HOST DEVICE BoxFilter(const BoxFilter& other) = default;
-    HOST DEVICE BoxFilter(BoxFilter&& other) = default;
-    HOST DEVICE ~BoxFilter() = default;
-    HOST DEVICE BoxFilter& operator=(const BoxFilter& right) = default;
-    HOST DEVICE BoxFilter& operator=(BoxFilter&& right) = default;
+    BoxFilter(const BoxFilter& other) = default;
+    BoxFilter(BoxFilter&& other) = default;
+    ~BoxFilter() = default;
+    BoxFilter& operator=(const BoxFilter& right) = default;
+    BoxFilter& operator=(BoxFilter&& right) = default;
 
     HOST DEVICE float filter(const Vec2f& point) const;
     HOST DEVICE float integrate(const Vec2f& max, const Vec2f& min) const;
@@ -43,11 +43,11 @@ struct BoxFilter : public Filter<BoxFilter>
 struct GaussianFilter : public Filter<GaussianFilter>
 {
     HOST DEVICE GaussianFilter(const Vec2f& radius);
-    HOST DEVICE GaussianFilter(const GaussianFilter& other) = default;
-    HOST DEVICE GaussianFilter(GaussianFilter&& other) = default;
-    HOST DEVICE ~GaussianFilter() = default;
-    HOST DEVICE GaussianFilter& operator=(const GaussianFilter& right) = default;
-    HOST DEVICE GaussianFilter& operator=(GaussianFilter&& right) = default;
+    GaussianFilter(const GaussianFilter& other) = default;
+    GaussianFilter(GaussianFilter&& other) = default;
+    ~GaussianFilter() = default;
+    GaussianFilter& operator=(const GaussianFilter& right) = default;
+    GaussianFilter& operator=(GaussianFilter&& right) = default;
 
     HOST DEVICE float filter(const Vec2f& point) const;
     HOST DEVICE float integrate(const Vec2f& max, const Vec2f& min) const;
@@ -58,11 +58,11 @@ struct GaussianFilter : public Filter<GaussianFilter>
 struct MitchellFilter : public Filter<MitchellFilter>
 {
     HOST DEVICE MitchellFilter(const Vec2f& radius);
-    HOST DEVICE MitchellFilter(const MitchellFilter& other) = default;
-    HOST DEVICE MitchellFilter(MitchellFilter&& other) = default;
-    HOST DEVICE ~MitchellFilter() = default;
-    HOST DEVICE MitchellFilter& operator=(const MitchellFilter& right) = default;
-    HOST DEVICE MitchellFilter& operator=(MitchellFilter&& right) = default;
+    MitchellFilter(const MitchellFilter& other) = default;
+    MitchellFilter(MitchellFilter&& other) = default;
+    ~MitchellFilter() = default;
+    MitchellFilter& operator=(const MitchellFilter& right) = default;
+    MitchellFilter& operator=(MitchellFilter&& right) = default;
 
     HOST DEVICE float filter(const Vec2f& point) const;
     HOST DEVICE float integrate(const Vec2f& max, const Vec2f& min) const;

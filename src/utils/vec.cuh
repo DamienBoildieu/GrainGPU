@@ -13,11 +13,11 @@ public:
     HOST DEVICE Vec(const T& x, const T& y);
     HOST DEVICE Vec(const T& x, const T& y, const T& z);
     HOST DEVICE Vec(const T& x, const T& y, const T& z, const T& t);
-    HOST DEVICE Vec(const Vec<T,N>& other) = default;
-    HOST DEVICE Vec(Vec<T,N>&& other) = default;
-    HOST DEVICE ~Vec() = default;
-    HOST DEVICE Vec<T,N>& operator=(const Vec<T,N>& right) = default;
-    HOST DEVICE Vec<T,N>& operator=(Vec<T,N>&& right) = default;
+    Vec(const Vec<T,N>& other) = default;
+    Vec(Vec<T,N>&& other) = default;
+    ~Vec() = default;
+    Vec<T,N>& operator=(const Vec<T,N>& right) = default;
+    Vec<T,N>& operator=(Vec<T,N>&& right) = default;
 
     HOST DEVICE Vec<T,N> operator+(const Vec<T,N>& right) const;
     HOST DEVICE Vec<T,N> operator-(const Vec<T,N>& right) const;
